@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 export default createGlobalStyle`
   * {

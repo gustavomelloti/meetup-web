@@ -17,6 +17,8 @@ export default function auth(state = initialState, action) {
       return { ...state, loading: true };
     case '@auth/SIGN_IN_FAILURE':
       return { ...state, loading: false };
+    case '@auth/SIGN_OUT':
+      return { ...state, token: null, signed: false };
     default:
       return state;
   }

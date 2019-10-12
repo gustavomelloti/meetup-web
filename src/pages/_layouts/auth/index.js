@@ -7,8 +7,12 @@ import { Wrapper } from './styles';
 
 export default function AuthLayout({ children }) {
   return (
-    <Wrapper>
-      <Header />
+    <Wrapper
+      className={`${
+        children.props.horizontalBackground ? 'horizontal' : 'vertical'
+      }`}
+    >
+      <Header horizontal={children.props.horizontalBackground} />
       {children}
     </Wrapper>
   );

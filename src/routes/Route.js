@@ -10,6 +10,7 @@ import { store } from '../store';
 export default function RouteWrapper({
   component: Component,
   isPrivate,
+  horizontalBackground,
   ...rest
 }) {
   const { signed } = store.getState().auth;
@@ -25,7 +26,7 @@ export default function RouteWrapper({
       {...rest}
       render={props => (
         <Layout>
-          <Component {...props} />
+          <Component {...props} horizontalBackground={horizontalBackground} />
         </Layout>
       )}
     />
@@ -34,10 +35,12 @@ export default function RouteWrapper({
 
 RouteWrapper.propTypes = {
   isPrivate: PropTypes.bool,
+  horizontalBackground: PropTypes.bool,
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
 };
 
 RouteWrapper.defaultProps = {
   isPrivate: false,
+  horizontalBackground: false,
 };

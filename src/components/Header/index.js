@@ -5,7 +5,7 @@ import { Container, Content, Profile } from './styles';
 
 import { signOut } from '../../store/modules/auth/actions';
 
-export default function Header() {
+export default function Header({ horizontal }) {
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
 
@@ -14,7 +14,7 @@ export default function Header() {
   }
 
   return (
-    <Container>
+    <Container className={`${horizontal ? 'transparent' : 'black'}`}>
       <Content>
         <Link to="/meetups">
           <nav>

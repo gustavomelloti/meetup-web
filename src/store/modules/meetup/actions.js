@@ -43,3 +43,38 @@ export function registerMeetupFailure() {
     type: '@meetup/REGISTER_MEETUP_FAILURE',
   };
 }
+
+export function cancelMeetupRequest(meetup) {
+  return {
+    type: '@meetup/CANCEL_MEETUP_REQUEST',
+    payload: meetup,
+  };
+}
+
+export function cancelMeetupSuccess(meetup) {
+  return {
+    type: '@meetup/CANCEL_MEETUP_SUCCESS',
+    payload: meetup,
+  };
+}
+
+export function redirectToUpdate(meetup) {
+  return {
+    type: '@meetup/REDIRECT_TO_UPDATE',
+    payload: meetup,
+  };
+}
+
+export function fillMeetupToEdit(meetup) {
+  return {
+    type: '@meetup/FILL_MEETUP_TO_UPDATE',
+    payload: meetup,
+  };
+}
+
+export function updateMeetupRequest(meetup) {
+  return {
+    type: '@meetup/UPDATE_MEETUP_REQUEST',
+    payload: meetup,
+  };
+}

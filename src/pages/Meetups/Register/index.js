@@ -3,18 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input, Textarea, useField } from '@rocketseat/unform';
 import { toast } from 'react-toastify';
 
+import { parseISO } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
 import { pt } from 'date-fns/locale';
 
 import api from '../../../services/api';
 
-import { registerMeetupRequest } from '../../../store/modules/meetup/actions';
+import {
+  registerMeetupRequest,
+  updateMeetupRequest,
+} from '../../../store/modules/meetup/actions';
 
 import { Container, ButtonBox, InputFile } from './styles';
 
 export default function Register() {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.meetup.loadgin);
+
+  const loading = useSelector(state => state.meetup.loading);
+  const editMeetup = useSelector(state => state.meetup.editMeetup);
 
   const { registerField } = useField('banner_id');
 
@@ -49,11 +55,21 @@ export default function Register() {
     }
   }, [refDate, registerDate]);
 
+  useEffect(() => {
+    if (editMeetup.id) {
+      setFile(editMeetup.banner_id);
+      setPreview(editMeetup.banner.url);
+      setSelected(parseISO(editMeetup.date));
+    }
+  }, [editMeetup]);
+
   function handleSubmit(data) {
     // TODO: Verificar o motivo de não estar dando bind nos campos
-    dispatch(
-      registerMeetupRequest({ ...data, date: selected, banner_id: file })
-    );
+    const fullMeetup = { ...data, date: selected, banner_id: file };
+
+    if (editMeetup.id)
+      dispatch(updateMeetupRequest({ ...fullMeetup, id: editMeetup.id }));
+    else dispatch(registerMeetupRequest(fullMeetup));
   }
 
   async function handleBannerChange(event) {
@@ -73,7 +89,7 @@ export default function Register() {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
+      <Form initialData={editMeetup} onSubmit={handleSubmit}>
         <label htmlFor="banner">
           {preview ? (
             <img src={preview} alt="banner" height="300" width="940" />

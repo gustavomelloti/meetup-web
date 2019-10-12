@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import { parseISO, format } from 'date-fns';
 import { pt } from 'date-fns/locale';
 
-import { listMeetupsRequest, redirectToMeetupUpdate } from '../../../store/modules/meetup/actions';
+import {
+  listMeetupsRequest,
+  redirectToMeetupUpdate,
+} from '../../../store/modules/meetup/actions';
 
 import {
   Container,
@@ -23,7 +26,7 @@ export default function List() {
 
   useEffect(() => {
     dispatch(listMeetupsRequest());
-  }, []);
+  }, [dispatch]);
 
   function redirectToUpdate(meetup) {
     dispatch(redirectToMeetupUpdate(meetup));
@@ -47,7 +50,11 @@ export default function List() {
               <MeetupName>{m.title}</MeetupName>
             </div>
             <div>
-              <MeetupDate>{format(parseISO(m.date), "dd 'de' MMMM', às ' HH:mm'h'", { locale: pt })}</MeetupDate>
+              <MeetupDate>
+                {format(parseISO(m.date), "dd 'de' MMMM', às ' HH:mm'h'", {
+                  locale: pt,
+                })}
+              </MeetupDate>
               <i className="fa fas fa-chevron-right" />
             </div>
           </Meetup>

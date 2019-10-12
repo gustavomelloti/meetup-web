@@ -3,7 +3,8 @@ import { darken, lighten } from 'polished';
 
 export const Container = styled.div`
   max-width: 940px;
-  margin: 50px auto;
+  margin: 50px auto 0px;
+  padding-bottom: 50px;
 `;
 
 export const Title = styled.div`
@@ -50,7 +51,7 @@ export const Meetup = styled.div`
   align-items: center;
   height: 62px;
   background: ${darken(0.1, '#402845')};
-  margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 5px;
   padding: 0px 20px;
   transition: background 0.2s;
@@ -87,4 +88,3 @@ export const WithoutResults = styled.div`
   font-weight: bold;
   text-align: center;
 `;
-

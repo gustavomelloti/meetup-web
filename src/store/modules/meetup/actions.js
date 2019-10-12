@@ -24,3 +24,22 @@ export function fillMeetupToUpdate(meetup) {
     payload: meetup,
   };
 }
+
+export function registerMeetupRequest(meetup) {
+  return {
+    type: '@user/REGISTER_MEETUP_REQUEST',
+    payload: { meetup },
+  };
+}
+
+export function registerMeetupSuccess() {
+  return {
+    type: '@user/REGISTER_MEETUP_SUCCESS',
+  };
+}
+
+export function registerMeetupFailure() {
+  return {
+    type: '@user/REGISTER_MEETUP_FAILURE',
+  };
+}

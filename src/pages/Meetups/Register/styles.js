@@ -11,6 +11,16 @@ export const Container = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
+    input[type='file'] {
+      display: none;
+    }
+
+    img {
+      margin: 0 0 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
     input,
     textarea {
       font-size: 16px;
@@ -83,5 +93,27 @@ export const ButtonBox = styled.div`
       margin-right: 10px;
       font-size: 20px;
     }
+  }
+`;
+
+export const InputFile = styled.div`
+  cursor: pointer;
+  border-radius: 4px;
+  height: 300px;
+  width: 940px;
+  margin: 0 0 10px;
+  background: ${darken(0.03, '#22202c')};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  i {
+    font-size: 50px;
+  }
+  p {
+    padding-top: 10px;
+    font-size: 20px;
   }
 `;

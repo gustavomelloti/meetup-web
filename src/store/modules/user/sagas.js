@@ -1,9 +1,10 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
-import { updateProfileSuccess, updateProfileFailure } from './actions';
-
+import history from '../../../services/history';
 import api from '../../../services/api';
+
+import { updateProfileSuccess, updateProfileFailure } from './actions';
 
 export function* updateProfile({ payload }) {
   try {
@@ -20,6 +21,8 @@ export function* updateProfile({ payload }) {
     toast.success('Perfil atualizado com sucesso!');
 
     yield put(updateProfileSuccess(response.data));
+
+    history.push('/meetups');
   } catch (err) {
     toast.error('Erro ao atualizar perfil');
     yield put(updateProfileFailure());

@@ -19,7 +19,7 @@ export function* signIn({ payload }) {
 
     yield put(signSuccess(token, user));
 
-    history.push('/profile');
+    history.push('/meetups');
   } catch (err) {
     toast.error('E-mail ou senha inválidos');
     yield put(signFailure());

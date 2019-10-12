@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
   Container,
   Title,
@@ -14,10 +16,12 @@ export default function List() {
     <Container>
       <Title>
         <span>Meus meetups</span>
-        <button type="button">
-          <i className="fa fa-plus-circle" />
-          Novo meetup
-        </button>
+        <Link to="/meetups/register">
+          <button type="button">
+            <i className="fa fa-plus-circle" />
+            Novo meetup
+          </button>
+        </Link>
       </Title>
       <MeetupBox>
         <Meetup>

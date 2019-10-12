@@ -16,9 +16,11 @@ export default function Header() {
   return (
     <Container>
       <Content>
-        <nav>
-          <img src="./logo-header.svg" alt="logo" />
-        </nav>
+        <Link to="/meetups">
+          <nav>
+            <img src="../logo-header.svg" alt="logo" />
+          </nav>
+        </Link>
         <aside>
           <Profile>
             <div>

@@ -1,6 +1,11 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { parseISO, format } from 'date-fns';
+import { pt } from 'date-fns/locale';
+
+import { listMeetupsRequest, redirectToMeetupUpdate } from '../../../store/modules/meetup/actions';
 
 import {
   Container,
@@ -9,9 +14,21 @@ import {
   Meetup,
   MeetupName,
   MeetupDate,
+  WithoutResults,
 } from './styles';
 
 export default function List() {
+  const dispatch = useDispatch();
+  const meetups = useSelector(state => state.meetup.meetups);
+
+  useEffect(() => {
+    dispatch(listMeetupsRequest());
+  }, []);
+
+  function redirectToUpdate(meetup) {
+    dispatch(redirectToMeetupUpdate(meetup));
+  }
+
   return (
     <Container>
       <Title>
@@ -24,33 +41,20 @@ export default function List() {
         </Link>
       </Title>
       <MeetupBox>
-        <Meetup>
-          <div>
-            <MeetupName>Meetup de React Native</MeetupName>
-          </div>
-          <div>
-            <MeetupDate>23 de junho, as 20h</MeetupDate>
-            <i className="fa fas fa-chevron-right" />
-          </div>
-        </Meetup>
-        <Meetup>
-          <div>
-            <MeetupName>Meetup de React Native</MeetupName>
-          </div>
-          <div>
-            <MeetupDate>23 de junho, as 20h</MeetupDate>
-            <i className="fa fas fa-chevron-right" />
-          </div>
-        </Meetup>
-        <Meetup>
-          <div>
-            <MeetupName>Node JS</MeetupName>
-          </div>
-          <div>
-            <MeetupDate>23 de junho, as 20h</MeetupDate>
-            <i className="fa fas fa-chevron-right" />
-          </div>
-        </Meetup>
+        {meetups.map(m => (
+          <Meetup key={m.id} onClick={() => redirectToUpdate(m)}>
+            <div>
+              <MeetupName>{m.title}</MeetupName>
+            </div>
+            <div>
+              <MeetupDate>{format(parseISO(m.date), "dd 'de' MMMM', às ' HH:mm'h'", { locale: pt })}</MeetupDate>
+              <i className="fa fas fa-chevron-right" />
+            </div>
+          </Meetup>
+        ))}
+        {meetups.length <= 0 && (
+          <WithoutResults>Nenhum meetup encontrado </WithoutResults>
+        )}
       </MeetupBox>
     </Container>
   );

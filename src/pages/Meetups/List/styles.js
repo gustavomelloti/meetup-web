@@ -80,3 +80,11 @@ export const MeetupDate = styled.div`
   font-size: 16px;
   padding-right: 20px;
 `;
+
+export const WithoutResults = styled.div`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+`;
+

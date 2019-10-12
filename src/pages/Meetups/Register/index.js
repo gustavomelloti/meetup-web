@@ -50,8 +50,10 @@ export default function Register() {
   }, [refDate, registerDate]);
 
   function handleSubmit(data) {
-    // TODO: Verificar o motivo da data do evento não estar dando bind
-    dispatch(registerMeetupRequest({ ...data, date: selected }));
+    // TODO: Verificar o motivo de não estar dando bind nos campos
+    dispatch(
+      registerMeetupRequest({ ...data, date: selected, banner_id: file })
+    );
   }
 
   async function handleBannerChange(event) {

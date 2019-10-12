@@ -11,35 +11,35 @@ export function listMeetupsSuccess(meetups) {
   };
 }
 
-export function redirectToMeetupUpdate(meetup) {
+export function redirectToMeetupDetail(meetup) {
   return {
-    type: '@meetup/REDIRECT_TO_MEETUP_UPDATE',
+    type: '@meetup/REDIRECT_TO_MEETUP_DETAIL',
     payload: meetup,
   };
 }
 
-export function fillMeetupToUpdate(meetup) {
+export function fillMeetupToDetail({ payload }) {
   return {
-    type: '@meetup/FILL_MEETUP_TO_UPDATE',
-    payload: meetup,
+    type: '@meetup/FILL_MEETUP_TO_DETAIL',
+    payload,
   };
 }
 
 export function registerMeetupRequest(meetup) {
   return {
-    type: '@user/REGISTER_MEETUP_REQUEST',
+    type: '@meetup/REGISTER_MEETUP_REQUEST',
     payload: { meetup },
   };
 }
 
 export function registerMeetupSuccess() {
   return {
-    type: '@user/REGISTER_MEETUP_SUCCESS',
+    type: '@meetup/REGISTER_MEETUP_SUCCESS',
   };
 }
 
 export function registerMeetupFailure() {
   return {
-    type: '@user/REGISTER_MEETUP_FAILURE',
+    type: '@meetup/REGISTER_MEETUP_FAILURE',
   };
 }

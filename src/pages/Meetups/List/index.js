@@ -7,7 +7,7 @@ import { pt } from 'date-fns/locale';
 
 import {
   listMeetupsRequest,
-  redirectToMeetupUpdate,
+  redirectToMeetupDetail,
 } from '../../../store/modules/meetup/actions';
 
 import {
@@ -28,8 +28,8 @@ export default function List() {
     dispatch(listMeetupsRequest());
   }, [dispatch]);
 
-  function redirectToUpdate(meetup) {
-    dispatch(redirectToMeetupUpdate(meetup));
+  function redirectToDetail(meetup) {
+    dispatch(redirectToMeetupDetail(meetup));
   }
 
   return (
@@ -45,7 +45,7 @@ export default function List() {
       </Title>
       <MeetupBox>
         {meetups.map(m => (
-          <Meetup key={m.id} onClick={() => redirectToUpdate(m)}>
+          <Meetup key={m.id} onClick={() => redirectToDetail(m)}>
             <div>
               <MeetupName>{m.title}</MeetupName>
             </div>

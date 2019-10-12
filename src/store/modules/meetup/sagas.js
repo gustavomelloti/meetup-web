@@ -6,7 +6,7 @@ import api from '../../../services/api';
 
 import {
   listMeetupsSuccess,
-  fillMeetupToUpdate,
+  fillMeetupToDetail,
   registerMeetupSuccess,
   registerMeetupFailure,
 } from './actions';
@@ -23,7 +23,6 @@ export function* listMeetupsRequest() {
 export function* registerMeetupRequest({ payload }) {
   try {
     const { meetup } = payload;
-    meetup.banner_id = 1;
     yield call(api.post, 'meetups', meetup);
     yield put(registerMeetupSuccess());
     toast.success('Meetup cadastrado com sucesso!');
@@ -35,12 +34,12 @@ export function* registerMeetupRequest({ payload }) {
 }
 
 export function* redirectToMeetupUpdate(meetup) {
-  yield put(fillMeetupToUpdate(meetup));
-  history.push('/meetup/update');
+  yield put(fillMeetupToDetail(meetup));
+  history.push('/meetups/detail');
 }
 
 export default all([
   takeLatest('@meetup/LIST_MEETUPS_REQUEST', listMeetupsRequest),
-  takeLatest('@meetup/REDIRECT_TO_MEETUP_UPDATE', redirectToMeetupUpdate),
-  takeLatest('@user/REGISTER_MEETUP_REQUEST', registerMeetupRequest),
+  takeLatest('@meetup/REDIRECT_TO_MEETUP_DETAIL', redirectToMeetupUpdate),
+  takeLatest('@meetup/REGISTER_MEETUP_REQUEST', registerMeetupRequest),
 ]);

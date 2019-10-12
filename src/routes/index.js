@@ -7,7 +7,7 @@ import SignUp from '../pages/SignUp';
 import Profile from '../pages/Profile';
 import ListMeetups from '../pages/Meetups/List';
 import RegisterMeetup from '../pages/Meetups/Register';
-import UpdateMeetup from '../pages/Meetups/Update';
+import DetailMeetup from '../pages/Meetups/Detail';
 
 export default function Routes() {
   return (
@@ -21,7 +21,7 @@ export default function Routes() {
         component={RegisterMeetup}
         isPrivate
       />
-      <Route path="/meetup/update" exact component={UpdateMeetup} isPrivate />
+      <Route path="/meetups/detail" exact component={DetailMeetup} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
